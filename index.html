@@ -1,0 +1,78 @@
+<!--naonone.com 반응형 웹 템플릿 v1.0, 어떠한 경우에도, 이 사이트를 전체, 일부 사용할 수 없으며, 이 사이트의 디자인등의 이 사이트의 독점적인 요소를 사용한 경우 무단도용으로 취급할것임-->
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>naonone.com</title>
+<!--  <script src="https://cdn.tailwindcss.com"></script>-->
+  <link href="../dist/output.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-slate-200">
+<nav>
+  <div class="border-8 text-xl w-full h-12 subpixel-antialiased text-black align-middle text-center">
+  <a class="" href="C:\Users\ingpungya\Desktop\site\index.html">&nbsp;&nbsp;naonone.com&nbsp;&nbsp;</a>
+  <a class="" href="">&nbsp;&nbsp;account&nbsp;&nbsp;</a>
+  <a class="" href="">&nbsp;&nbsp;hub&nbsp;&nbsp;</a>
+  <a class="" href="">&nbsp;&nbsp;지진위키&nbsp;&nbsp;</a></div>
+</nav>
+<section class="notetitle">
+  <div class="text-4xl border-8 w-full h-80 bg-purple-700 subpixel-antialiased text-white rounded-2xl border-slate-200 text-center align-middle">
+    <br><br><br>
+    <br>
+    naonone.com
+    <br>
+  </div>
+</section>
+<section class="content">
+  <div class="w-full bg-slate-100 text-xl subpixel-antialiased text-balck rounded-2xl border-8 border-slate-200 text-center align-middle leading-relaxed">
+    <div class="xl:mx-96 lg:mx-48 md:mx-24 mx-12 my-24">
+      {% for post in paginator.posts %}
+      <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+      <p class="author">
+        <span class="date">{{ post.date }}</span>
+      </p>
+      <div class="content">
+        {{ post.content }}
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+<section class="footer">
+  <div class="h-8 text-xl subpixel-antialiased text-black rounded-2xl border-8 border-slate-200 text-center align-middle leading-relaxed">
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+      {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+      {% else %}
+      <span>&laquo; Prev</span>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+      <em>{{ page }}</em>
+      {% elsif page == 1 %}
+      <a href="{{ '/' | relative_url }}">{{ page }}</a>
+      {% else %}
+      <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+      {% endfor %}
+
+      {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+      {% else %}
+      <span>Next &raquo;</span>
+      {% endif %}
+    </div>
+    {% endif %}
+    <br><br><br>
+    <div class="my-4">Copyright 2022. Naon All rights reserved.</div>
+    <div class="my-4"><a href="legal/email.html">이메일무단수집거부</a>&emsp;&emsp;<a href="legal">개인정보처리방침</a></div>
+  </div>
+</section>
+</body>
+</html>
